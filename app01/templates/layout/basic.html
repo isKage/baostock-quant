@@ -1,0 +1,142 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>{% block title %}{% endblock %}</title>
+    <link rel="stylesheet" href="{% static 'plugins/bootstrap-3.4.1/css/bootstrap.min.css' %}">
+    <link rel="stylesheet" href="{% static 'plugins/font-awesome-4.7.0/css/font-awesome.min.css' %}">
+    <script src="{% static 'js/echarts.js' %}"></script>
+    <style>
+        .navbar-default {
+            border-radius: 0;
+        }
+
+        #navbar-wrapper {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 9999;
+        }
+
+        /* 回到顶部 */
+        .backTop {
+            /* 固定定位 */
+            position: fixed;
+            bottom: 30px;
+            right: 10px;
+            margin-right: 20px;
+            z-index: 999;
+            /* 回到顶部样式 */
+            width: 35px;
+            height: 35px;
+            background-color: #06b6ef;
+            /* 字体在元素中水平垂直居中 */
+            line-height: 35px;
+            text-align: center;
+            font-size: 14px;
+            color: white;
+            /* 设置圆角 */
+            border-radius: 50%;
+            /* 设置过渡效果 */
+            transition: all linear 0.5s;
+            cursor: pointer;
+            /* 隐藏 透明度为0 */
+            opacity: 0;
+        }
+
+    </style>
+
+    {% block css %}{% endblock %}
+</head>
+<body>
+
+{# 导航条 #}
+<nav class="navbar navbar-default" id="navbar-wrapper">
+    <div class="container">
+
+        {# 左上角标题 #}
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle collapsed" data-toggle="collapse"
+                    data-target="#bs-example-navbar-collapse-1" aria-expanded="false">
+                <span class="sr-only">Toggle navigation</span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="{% url 'index' %}">Tracer</a>
+        </div>
+
+        {# 内容 #}
+        <div class="collapse navbar-collapse" id="bs-example-navbar-collapse-1">
+            {# 左侧 #}
+            <ul class="nav navbar-nav">
+                <li><a href="{% url 'individual' %}">个股</a></li>
+                <li><a href="#">企业方案</a></li>
+                <li><a href="#">帮助文档</a></li>
+                <li><a href="#">价格</a></li>
+            </ul>
+
+            {# 右侧 #}
+            <ul class="nav navbar-nav navbar-right">
+                {% if request.tracer.user %}
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-haspopup="true"
+                           aria-expanded="false">xxx<span class="caret"></span></a>
+                        <ul class="dropdown-menu">
+                            <li><a href="#">管理中心</a></li>
+                            <li role="separator" class="divider"></li>
+                            <li><a href="#">退 出</a></li>
+                        </ul>
+                    </li>
+                {% else %}
+                    <li><a href="#">登 录</a></li>
+                    <li><a href="#">注 册</a></li>
+                {% endif %}
+            </ul>
+
+        </div>
+    </div>
+</nav>
+
+{# 避免导航条遮盖 #}
+<div style="height: 70px"></div>
+
+{# 返回顶部 #}
+<div class="backTop" id="backTop">
+    <span class="glyphicon glyphicon-eject" aria-hidden="true"></span>
+</div>
+
+<div class="container">
+    {% block content %}{% endblock %}
+</div>
+
+<script src="{% static 'js/jquery-3.6.0.js' %}"></script>
+<script src="{% static 'plugins/bootstrap-3.4.1/js/bootstrap.min.js' %}"></script>
+
+
+<script>
+    /*
+    需求：当页面滚动大于300像素，就显示回到顶部按钮
+    */
+    // 获取回到顶部元素
+    const backTop = document.querySelector('#backTop')
+    // L2 事件监听
+    // 给页面添加 滚动事件
+    window.addEventListener('scroll', function () {
+        // 检测页面滚动的头部距离属性
+        const n = document.documentElement.scrollTop
+        backTop.style.opacity = n >= 100 ? 1 : 0
+    })
+    // 需求：点击返回按钮，页面会返回顶部
+    // 给回到顶部元素添加 点击事件
+    backTop.addEventListener('click', function () {
+        document.documentElement.scrollTop = 0
+    })
+</script>
+
+{% block js %}{% endblock %}
+
+</body>
+</html>

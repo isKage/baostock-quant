@@ -55,7 +55,7 @@ ROOT_URLCONF = 'baostock_quant_demo.urls'
 TEMPLATES = [
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [BASE_DIR / 'templates']
+        'DIRS': [BASE_DIR / 'app01/templates']
         ,
         'APP_DIRS': True,
         'OPTIONS': {
