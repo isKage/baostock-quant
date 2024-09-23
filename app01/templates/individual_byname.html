@@ -12,15 +12,15 @@
 {% endblock %}
 
 {% block content %}
-    <!-- 查询代码 -->
+    <!-- 查询名称 -->
     <div class="panel panel-default">
         <div class="panel-heading">个股查询</div>
         <div class="panel-body">
             <form id="stock-form" class="form-inline">
                 {% csrf_token %}
                 <div class="form-group">
-                    <label>股票代码</label>
-                    <input type="text" class="form-control" name="code" id="stock-code" placeholder="股票代码">
+                    <label>股票名称</label>
+                    <input type="text" class="form-control" name="name" id="stock-code" placeholder="股票名称">
                 </div>
                 <div class="form-group">
                     <label>开始日期</label>
@@ -96,15 +96,15 @@
 
             $("#search-btn").click(function () {
                 // 获取表单数据
-                var code = $("#stock-code").val();
+                var name = $("#stock-code").val();
                 var date = $("#start-date").val();
                 var csrfToken = $("input[name=csrfmiddlewaretoken]").val();
 
                 $.ajax({
-                    url: "/individual/",
+                    url: "/individual/byname/",
                     type: "POST",
                     data: {
-                        code: code,
+                        name: name,
                         date: date,
                         csrfmiddlewaretoken: csrfToken
                     },

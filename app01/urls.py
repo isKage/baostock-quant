@@ -9,4 +9,5 @@ urlpatterns = [
 
     # 个股
     path("individual/", individual.individual, name="individual"),
+    path("individual/byname/", individual.individual_byname, name="individual_byname"),
 ]

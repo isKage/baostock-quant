@@ -2,6 +2,7 @@
 """Django's command-line utility for administrative tasks."""
 import os
 import sys
+import baostock as bs
 
 
 def main():
@@ -19,4 +20,6 @@ def main():
 
 
 if __name__ == '__main__':
+    bs.login()
     main()
+    bs.logout()

@@ -2,10 +2,10 @@ import baostock as bs
 import pandas as pd
 
 # 登陆系统
-lg = bs.login()
+# lg = bs.login()
 # 显示登陆返回信息
-print('login respond error_code:' + lg.error_code)
-print('login respond  error_msg:' + lg.error_msg)
+# print('login respond error_code:' + lg.error_code)
+# print('login respond  error_msg:' + lg.error_msg)
 
 # 获取沪深A股历史K线数据
 # 详细指标参数，参见“历史行情指标参数”章节；“分钟线”参数与“日线”参数不同。“分钟线”不包含指数。
@@ -36,4 +36,4 @@ result = pd.DataFrame(data_list, columns=rs.fields)
 print(result)
 
 # 登出系统
-bs.logout()
+# bs.logout()

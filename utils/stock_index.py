@@ -6,7 +6,7 @@ from datetime import datetime, timedelta
 
 def stock_index(code, fields, start_date, end_date, frequency):
     # 登陆系统
-    lg = bs.login()
+    # lg = bs.login()
 
     # 获取指数(综合指数、规模指数、一级行业指数、二级行业指数、策略指数、成长指数、价值指数、主题指数)K线数据
     # 综合指数，例如：sh.000001 上证指数，sz.399106 深证综指 等；
@@ -36,7 +36,7 @@ def stock_index(code, fields, start_date, end_date, frequency):
     result = pd.DataFrame(data_list, columns=rs.fields)
 
     # 登出系统
-    bs.logout()
+    # bs.logout()
 
     return result
 

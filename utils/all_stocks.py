@@ -4,7 +4,7 @@ import pandas as pd
 
 def sz50():
     # 登陆系统
-    lg = bs.login()
+    # lg = bs.login()
 
     # 获取上证 50 成分股
     rs = bs.query_sz50_stocks()
@@ -54,7 +54,7 @@ def zz500():
     result = pd.DataFrame(zz500_stocks, columns=rs.fields)
 
     # 登出系统
-    bs.logout()
+    # bs.logout()
 
     return result
 
